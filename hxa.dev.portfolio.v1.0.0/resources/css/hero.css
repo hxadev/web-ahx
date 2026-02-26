@@ -1,202 +1,441 @@
+/* ============================================
+   HERO SECTION — Split Layout
+   Two columns: text left, avatar right
+   Dark gradient bg + particles.js behind
+   Inspired by modern portfolio hero patterns
+   ============================================ */
+
+/* --- Outer wrapper (particles target) --- */
 .hero.lazy-background {
     position: relative;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
     width: 100%;
     height: 100vh;
-    justify-content: center;
+    height: 100dvh;
+    min-height: 560px;
+    display: flex;
     align-items: center;
-    text-align: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #0a0e17;
     background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: fixed;
     background-position: center center;
-    transition: all 0.5s ease-in-out;
+    background-attachment: fixed;
 }
 
+/* Visible — dark cinematic gradient */
 .hero.lazy-background.visible {
-    background-image: linear-gradient(
-            var(--background-color-degree) 25%,
-            var(--contrast-color-degree) 25%
+    background-image:
+        radial-gradient(
+            ellipse at 70% 50%,
+            rgba(0, 0, 0, 0.3) 0%,
+            rgba(10, 14, 23, 0.85) 60%,
+            rgba(10, 14, 23, 0.95) 100%
         ),
         var(--image-hero);
 }
 
-.hero .hero-avatar {
+/* Particles canvas */
+.hero.lazy-background > canvas,
+.hero.lazy-background > .particles-js-canvas-el {
+    position: absolute !important;
+    inset: 0;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 0;
+}
+
+/* --- Hero inner --- */
+#hero {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+/* ============================================
+   SPLIT LAYOUT — Two columns
+   ============================================ */
+
+.hero-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 48px;
+    max-width: 1100px;
+    width: 100%;
+    padding: 0 48px;
+    margin: 0 auto;
+}
+
+/* ============================================
+   LEFT COLUMN — Text
+   ============================================ */
+
+.hero-split__text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+/* Greeting */
+.hero__greeting {
+    color: var(--contrast-color);
+    font-size: clamp(0.82rem, 1.2vw, 0.95rem);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0 0 16px;
+}
+
+/* Name */
+.hero__name {
+    color: var(--text-color-white);
+    font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    margin: 0 0 14px;
+}
+
+.hero__name .hero__name-accent {
+    color: var(--contrast-color);
+}
+
+/* Role */
+.hero__role {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+    font-weight: 400;
+    margin: 0 0 18px;
+    letter-spacing: 0.02em;
+}
+
+/* Tagline */
+.hero__tagline {
+    color: rgba(255, 255, 255, 0.45);
+    font-size: clamp(0.85rem, 1.2vw, 0.92rem);
+    line-height: 1.7;
+    max-width: 420px;
+    margin: 0 0 32px;
+}
+
+/* ============================================
+   CTA BUTTONS
+   ============================================ */
+
+.hero__cta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 48px;
+}
+
+.hero__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    border-radius: 50px;
+    border: 2px solid transparent;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Primary — pill, solid accent */
+.hero__btn--primary {
+    background: var(--contrast-color);
+    color: var(--text-color-white);
+    border-color: var(--contrast-color);
+}
+
+.hero__btn--primary:hover {
+    background: var(--contrast-color-secondary);
+    border-color: var(--contrast-color-secondary);
+    color: var(--text-color-white);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.35);
+    text-decoration: none;
+}
+
+/* Ghost — pill, outline */
+.hero__btn--ghost {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.8);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.hero__btn--ghost:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    color: var(--text-color-white);
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.hero__btn i {
+    font-size: 0.82rem;
+}
+
+.hero__btn--ghost i {
+    transition: transform 0.3s ease;
+}
+
+.hero__btn--ghost:hover i {
+    transform: translateX(4px);
+}
+
+/* ============================================
+   SCROLL INDICATOR (bottom-left, like reference)
+   ============================================ */
+
+.hero__scroll {
+    margin-top: auto;
+}
+
+.hero__scroll-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.4);
+    transition: color 0.3s ease;
+}
+
+.hero__scroll-link:hover {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+}
+
+/* Mouse icon outline */
+.hero__scroll-icon {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 22px;
+    height: 34px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding-top: 6px;
+}
+
+.hero__scroll-dot {
     display: block;
-    position: relative;
-    top: 80px;
-    width: 150px;
-    height: 150px;
-    max-width: 150px;
-    max-height: 150px;
-    right: 0px;
-    left: 0px;
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 50%;
-    /* vertical-align: middle; */
-    border: 6px solid var(--contrast-color);
-    transition: all 0.5s ease-in-out;
+    width: 3px;
+    height: 8px;
+    background: var(--contrast-color);
+    border-radius: 3px;
+    animation: scrollDot 1.8s ease-in-out infinite;
 }
 
-.hero .hero-logo {
-    position: fixed;
-}
-.hero .hero-logo img {
-    width: 20px;
-    left: 4px;
-}
-
-.hero .hero-avatar img {
-    width: 165px;
-    height: auto;
-    margin-left: -20px;
-    margin-top: -10px;
-}
-
-.hero .hero-info {
-    position: relative;
-    width: auto;
-    padding: 5px 20px 5px 20px;
-    text-align: center;
-    top: 105px;
-    margin: 0 auto;
-}
-.hero .hero-info h3 {
-    color: var(--text-color-secondary);
-}
-
-.hero .typewritting {
-    width: 33%;
-    margin: auto;
-    text-align: center;
-}
-
-.hero .typewritting h1 {
-    color: var(--text-color-white);
-    font-size: 2.7em;
-    overflow: hidden;
-    border-right: 0.15em solid var(--text-color-white);
-    white-space: nowrap;
-    margin: 0 auto;
-    word-spacing: 0.5em;
-
-    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-}
-
-.hero h3 {
-    font-size: 1.4em;
-    color: var(--text-color-secondary);
-    margin: 5px 5px;
-}
-
-.hero p {
-    width: 33%;
-    font-size: 13px;
-    position: relative;
-    text-align: justify;
-    margin: 20px auto;
-    color: var(--text-color-white);
-}
-.hero p.hastag {
-    font-size: 15px;
-    font-weight: bold;
-    font-style: italic;
-    text-align: center;
-}
-.hero .row {
-    display: block;
-    position: relative;
-}
-
-.hero .btn-hero:nth-of-type(1) {
-    background: var(--button-primary-color);
-    color: var(--text-color-white);
-    margin-right: 5px;
-}
-
-.hero .btn-hero:nth-of-type(1):hover {
-    background: var(--button-primary-color-hover);
-    color: var(--text-color-white);
-}
-
-.hero .btn-hero:nth-of-type(2) {
-    background: var(--button-secondary-color);
-    color: var(--text-primary-color);
-    margin-right: 5px;
-}
-
-.hero .btn-hero:nth-of-type(2):hover {
-    background: var(--button-secondary-color-hover);
-    margin-right: 5px;
-}
-
-
-@media only screen and (max-width: 620px) {
-    .hero .hero-avatar {
-        /* top: 50px; */
-        top: 15px;
-    }
-    .hero .typewritting {
-        width: 34%;
-        /* margin: auto; */
-        text-align: center;
-        position: relative;
-        bottom: 81px;
-        margin: auto;
-        right: 50px;
-    }
-    .hero h3 {
-        font-size: 1.2em;
-        color: var(--text-color-secondary);
-        margin: auto;
-        width: 227px;
-        position: relative;
-        bottom: 65px;
-        left: 4px;
-    }
-    .hero p {
-        width: 77%;
-        font-size: 13px;
-        position: relative;
-        text-align: justify;
-        margin: 20px auto;
-        color: var(--text-color-white);
-        bottom: 10px;
-        left: 10px;
-    }
-    .hero .typewritting h1 {
-        font-size: 1.5em;
-        border-right: 0.15em solid var(--text-color-white);
-        position: relative;
-        animation: typing 3.5s steps(40, end),
-            blink-caret 0.75s step-end infinite;
-        width: 205%;
-    }
-    .hero .row {
-        display: block;
-        position: relative;
-        bottom: -80px;
-        left: 5px;
-    }
-}
-
-@keyframes typing {
-    from {
-        width: 0;
-    }
-    to {
-        width: 100%;
-    }
-}
-@keyframes blink-caret {
-    from,
-    to {
-        border-color: transparent;
+@keyframes scrollDot {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
     }
     50% {
-        border-color: var(--white-color);
+        opacity: 0.3;
+        transform: translateY(6px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero__scroll-text {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+/* ============================================
+   RIGHT COLUMN — Avatar Visual
+   Rounded rectangle frame with glow
+   ============================================ */
+
+.hero-split__visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.hero__frame {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+}
+
+/* Glow behind the frame */
+.hero__frame-glow {
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(
+        ellipse at center,
+        var(--contrast-color-degree) 0%,
+        transparent 70%
+    );
+    border-radius: 40%;
+    filter: blur(40px);
+    opacity: 0.35;
+    z-index: 0;
+    animation: glowPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+    0% { opacity: 0.25; transform: scale(0.95); }
+    100% { opacity: 0.4; transform: scale(1.05); }
+}
+
+/* Frame border */
+.hero__frame-border {
+    position: relative;
+    z-index: 1;
+    border-radius: 32% 32% 32% 32% / 40% 40% 40% 40%;
+    overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    aspect-ratio: 3 / 4;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.hero__avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.95) contrast(1.05);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+/* --- Large Desktop (1200px+) --- */
+@media only screen and (min-width: 1200px) {
+    .hero__frame {
+        max-width: 420px;
+    }
+}
+
+/* --- Tablet Landscape (1024px) --- */
+@media only screen and (max-width: 1024px) {
+    .hero-split {
+        gap: 32px;
+        padding: 0 32px;
+    }
+
+    .hero__frame {
+        max-width: 320px;
+    }
+}
+
+/* --- Tablet Portrait (768px) --- */
+@media only screen and (max-width: 768px) {
+    .hero.lazy-background {
+        background-attachment: scroll;
+        height: auto;
+        min-height: 100vh;
+        min-height: 100dvh;
+    }
+
+    .hero-split {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        padding: 100px 24px 60px;
+        text-align: center;
+    }
+
+    .hero-split__text {
+        align-items: center;
+        text-align: center;
+        order: 2;
+    }
+
+    .hero-split__visual {
+        order: 1;
+    }
+
+    .hero__frame {
+        max-width: 240px;
+    }
+
+    .hero__tagline {
+        max-width: 100%;
+    }
+
+    .hero__cta {
+        justify-content: center;
+        margin-bottom: 32px;
+    }
+
+    .hero__scroll {
+        align-self: center;
+    }
+}
+
+/* --- Mobile (480px) --- */
+@media only screen and (max-width: 480px) {
+    .hero-split {
+        padding: 80px 20px 48px;
+        gap: 28px;
+    }
+
+    .hero__frame {
+        max-width: 200px;
+    }
+
+    .hero__frame-border {
+        border-width: 2px;
+        border-radius: 28% 28% 28% 28% / 36% 36% 36% 36%;
+    }
+
+    .hero__greeting {
+        font-size: 0.78rem;
+        margin-bottom: 12px;
+    }
+
+    .hero__name {
+        margin-bottom: 10px;
+    }
+
+    .hero__tagline {
+        margin-bottom: 24px;
+    }
+
+    .hero__cta {
+        flex-direction: column;
+        width: 100%;
+        max-width: 260px;
+        margin-bottom: 28px;
+    }
+
+    .hero__btn {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 24px;
+    }
+
+    .hero__scroll-text {
+        display: none;
+    }
+}
+
+/* --- Small Phone (360px) --- */
+@media only screen and (max-width: 360px) {
+    .hero__frame {
+        max-width: 170px;
+    }
+
+    .hero__name {
+        font-size: 1.8rem;
     }
 }

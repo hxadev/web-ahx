@@ -9,7 +9,6 @@ class MenuController extends Controller
 {
     public function getMenu()
     {
-        $menu = new Menu();
-        return $menu->all();
+        return Menu::all();
     }
 }

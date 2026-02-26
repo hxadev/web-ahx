@@ -100,7 +100,7 @@ return [
         // ],
         'mongodb' => [
             'driver' => 'mongodb',
-            'dsn' => "mongodb+srv://" . env('MONGO_DB_USERNAME') . ":".env('MONGO_DB_PASSWORD')."@".env('MONGO_DB_HOST')."/".env('MONGO_DB_DATABASE')."?ssl=true&retryWrites=true&w=majority",
+            'dsn' => "mongodb://mongo:qsTlJMFGkXSUBEhYNHpiNowpNPhEXeEc@tramway.proxy.rlwy.net:44497/web_hexa?authSource=admin",
             'database' => 'web_hexa',
         ],
 

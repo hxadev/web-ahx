@@ -25,7 +25,7 @@
         "devicon": "^2.2.0",
         "font-awesome": "^4.7.0",
         "lozad": "^1.16.0",
-        "node-sass": "^7.0.1",
+        "sass": "^1.71.0",
         "normalize.css": "^8.0.1",
         "owl.carousel": "^2.3.4",
         "particles.js": "^2.0.0",

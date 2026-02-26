@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Astrotomic\Translatable\Translatable;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use MongoDB\Laravel\Eloquent\Model as Eloquent;
 use App\Models\ProjectDetail;
 
 class Project extends Eloquent implements TranslatableContract
@@ -12,7 +12,7 @@ class Project extends Eloquent implements TranslatableContract
     use Translatable;
 
     protected $connection = 'mongodb';
-    protected $collection = 'project';
+    protected $table = 'project';
 
     protected $primaryKey = 'id';
 

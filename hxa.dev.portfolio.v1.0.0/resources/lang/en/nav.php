@@ -4,5 +4,6 @@ return [
     "home" => "Home",
     "about" => "About Me",
     "portfolio" => "Portfolio",
-    "contact" => "Contact"
+    "contact" => "Contact",
+    "back" => "Back to Portfolio"
 ];

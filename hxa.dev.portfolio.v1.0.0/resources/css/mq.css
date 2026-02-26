@@ -1,15 +1,24 @@
-/* Media Queries: Tablet Landscape */
-@media screen and(max-width:1060px) {
+/* ============================================
+   GLOBAL MEDIA QUERIES
+   Breakpoints: 1024px / 768px / 480px / 360px
+
+   Note: Section-specific responsive rules are
+   in their own CSS files (hero.css, plugins.css,
+   nav.css, etc). This file is for global overrides.
+   ============================================ */
+
+/* --- Tablet Landscape (1024px) --- */
+@media screen and (max-width: 1024px) {
 }
-/* Media Queries: Tablet Portrait */
-@media screen and(max-width:760) {
+
+/* --- Tablet Portrait (768px) --- */
+@media screen and (max-width: 768px) {
 }
-/* Media Queries: Small Tablet */
-@media screen and(max-width:630) {
+
+/* --- Mobile (480px) --- */
+@media screen and (max-width: 480px) {
 }
-/* Media Queries: IPhone or Mobile */
-@media screen and(max-width:450) {
-}
-/* Media Queries: Small Phone */
-@media screen and(max-width:310) {
+
+/* --- Small Phone (360px) --- */
+@media screen and (max-width: 360px) {
 }

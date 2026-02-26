@@ -11,7 +11,7 @@ export const ConfigMenu = function() {
                 $(this).attr("state", "ON");
             } else {
                 $(".config-panel").css({
-                    right: -150
+                    right: -160
                 });
                 $(this).attr("state", "OFF");
             }

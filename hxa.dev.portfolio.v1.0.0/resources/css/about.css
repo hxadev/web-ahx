@@ -1,242 +1,432 @@
-.aboutMe {
+/* ============================================
+   ABOUT ME SECTION
+   Creative layout: bio+stats split, tech stack
+   badges, service cards with accent bar
+   ============================================ */
+
+.about {
     position: relative;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
     width: 100%;
-    height: auto;
-    background: var(--background-color-secondary);
-    background-image: linear-gradient(-32deg,
-            var(--background-color-primary) 43%,
-            transparent 30%),
-        linear-gradient(47deg, var(--contrast-color) 36%, transparent 27%);
+    padding: 80px 0;
+    background: var(--background-color-primary);
+    overflow: hidden;
 }
 
-.aboutMe .container {
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: auto 100%;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 50px;
-    padding-bottom: 50px;
-}
-
-.aboutMe h1 {
-    margin: 0;
-    text-align: center;
-    font-weight: 50;
-    font-size: 40px;
-    color: var(--contrast-color-secondary);
-}
-
-.aboutMe .container p {
-    color: var(--text-color-primary);
-    text-align: justify;
-    font-weight: normal;
-    font-size: 14px;
-    text-shadow: 0px 0px 10px var(--background-color-primary);
-}
-
-.aboutMe .container h1 {
-    text-align: center;
-    font-weight: 100;
-    padding-top: 20px;
-    font-size: 35px;
-    padding-bottom: 40px;
-}
-
-.aboutMe .container h3 {
-    color: var(--contrast-color);
-    font-weight: bold;
-    font-size: 22px;
-    padding-bottom: 20px;
-}
-
-.aboutMe .container h3::before {
-    content: "";
-    display: inline-block;
-    width: 2px;
-    height: 5%;
-    background: var(--contrast-color);
+.about::before {
+    content: '';
     position: absolute;
+    top: 0;
     left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--contrast-color), transparent);
 }
 
-.aboutMe .container .list-aboutme-ol {
-    counter-reset: li;
-    list-style: none;
-    *list-style: decimal;
-    padding: 0;
-    margin-bottom: 4em;
+/* --- Container --- */
+.about__container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
 }
 
-.aboutMe .container .list-aboutme-ol li {
-    position: relative;
-    display: block;
-    padding: 0.4em 0.4em 0.4em 0.6em;
-    margin: 0.5em 0;
-    background-color: var(--secondary-color);
-    color: var(--white-color);
-    border-radius: 0.3em;
-    transition: 0.5s all ease-in-out;
-    font-size: 14px;
-}
-
-.aboutMe .container .list-aboutme-ol li:hover {
-    background: var(--primary-color-active);
-    color: var(--white-color);
-    padding: 0.4em 0.4em 0.4em 1em;
-}
-
-.aboutMe .container .list-aboutme-ol li::before {
-    content: "";
-    display: inline-block;
-    width: 5px;
-    height: 64%;
-    background: var(--primary-color);
-    position: absolute;
-    left: 0;
-    border-radius: 50px;
-}
-
-.aboutMe .container .img-content {
+/* --- Reusable Section Title --- */
+.section-title {
     text-align: center;
-}
-
-.aboutMe .container .img-content img {
-    max-width: 40%;
-    border-radius: 10px;
-}
-
-.aboutMe .container p a {
-    text-decoration: none;
-    color: var(--contrast-color);
-}
-
-.aboutMe .container p a:hover {
-    text-decoration: underline;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 300;
     color: var(--contrast-color-secondary);
+    margin: 0 0 52px;
+    letter-spacing: 0.02em;
 }
 
-.aboutMe .container .card-section {
+.section-title i {
+    margin-right: 10px;
+    font-size: 0.85em;
+    opacity: 0.8;
+}
+
+/* --- Sub-section labels --- */
+.about__section-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--contrast-color);
+    margin: 0 0 24px;
     display: flex;
-    flex-wrap: inherit;
-    justify-content: center;
-    flex-direction: row;
+    align-items: center;
+    gap: 12px;
 }
 
-.aboutMe .container .card {
-    width: 15em;
-    background: var(--background-color-secondary);
+.about__section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--contrast-color);
+    opacity: 0.2;
+}
+
+/* ============================================
+   INTRO — Split: Bio left + Stats right
+   ============================================ */
+
+.about__intro {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 48px;
+    align-items: start;
+    margin-bottom: 56px;
+}
+
+/* --- Bio (left) --- */
+.about__bio-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     color: var(--text-color-primary);
-    border-radius: 20px;
-    box-shadow: 0px 7px 16px var(--shadow-color);
-    transition: ease-in-out 0.5s;
+    opacity: 0.5;
+    margin-bottom: 12px;
 }
 
-.aboutMe .container .card:hover {
-    transform: scale(1.1);
-    z-index: 3;
-}
-
-.aboutMe .container .card .card-title {
-    font-size: 1rem;
-    text-align: center;
+.about__code-tag {
+    color: var(--contrast-color);
+    font-family: 'Courier New', monospace;
     font-weight: 700;
 }
 
-.aboutMe .container .card .card-header {
-    text-align: center;
+.about__headline {
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    font-weight: 800;
+    color: var(--text-color-primary);
+    line-height: 1.2;
+    margin: 0 0 18px;
+}
+
+.about__headline .about__accent {
+    color: var(--contrast-color);
+}
+
+.about__bio-text {
+    font-size: 0.92rem;
+    line-height: 1.75;
+    color: var(--text-color-primary);
+    opacity: 0.8;
+    margin: 0 0 24px;
+    max-width: 480px;
+}
+
+/* CTA links row */
+.about__cta-row {
     display: flex;
+    gap: 12px;
     flex-wrap: wrap;
 }
 
-.aboutMe .container .card .card-header i {
-    font-size: 30px;
-    text-align: center;
-    margin: 8px auto;
-    /* background: var(--background-color-primary); */
-    text-shadow: 0px 0px 10px var(--background-color-primary);
-    transition: all 0.5s ease-in-out;
-}
-
-.aboutMe .container .card .card-text {
-    color: var(--text-color-primary);
-}
-
-.aboutMe .container .card .card-header i:hover {
-    background: var(--background-color-primary);
-    border-radius: 20%;
-    font-size: 40px;
-    text-align: center;
-    margin: 8px auto;
-    padding: 5px;
-}
-
-.aboutMe .container .container-timeline {}
-
-.aboutMe .container .container-timeline .timeline {
-    counter-reset: year 2018;
-    position: relative;
-}
-
-.aboutMe .container .container-timeline .timeline li {
-    list-style: none;
-    float: left;
-    width: 30%;
-    position: relative;
-    text-align: center;
-    text-transform: uppercase;
-}
-
-.aboutMe .container .container-timeline .timeline li::before {
-    counter-increment: year;
-    content: counter(year);
-    width: 50px;
-    height: 50px;
-    border: 3px solid var(--white-color);
-    border-radius: 50%;
-    display: block;
-    text-align: center;
-    line-height: 50px;
-    margin: 0 auto 10px auto;
-    background: #f1f1f1;
-    color: #000;
-    transition: all ease-in-out 0.3s;
+.about__cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    border-radius: 50px;
+    background: var(--contrast-color);
+    color: var(--text-color-white);
+    text-decoration: none;
     cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid var(--contrast-color);
 }
 
-.aboutMe .container .container-timeline .timeline li::after {
-    content: "";
+.about__cta-link:hover {
+    background: var(--contrast-color-secondary);
+    border-color: var(--contrast-color-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    text-decoration: none;
+    color: var(--text-color-white);
+}
+
+.about__cta-link--ghost {
+    background: transparent;
+    color: var(--contrast-color);
+    border-color: var(--contrast-color);
+}
+
+.about__cta-link--ghost:hover {
+    background: var(--contrast-color);
+    color: var(--text-color-white);
+}
+
+.about__cta-link i {
+    font-size: 0.78rem;
+}
+
+/* --- Stats (right) --- */
+.about__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.about__stat {
+    background: var(--background-color-secondary);
+    border-radius: 14px;
+    padding: 24px 20px;
+    text-align: center;
+    border: 1px solid transparent;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.about__stat:hover {
+    border-color: var(--contrast-color);
+    transform: translateY(-3px);
+}
+
+.about__stat-number {
+    display: block;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 800;
+    color: var(--contrast-color);
+    line-height: 1;
+    margin-bottom: 6px;
+}
+
+.about__stat-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-color-primary);
+    opacity: 0.6;
+    line-height: 1.3;
+}
+
+/* ============================================
+   TECH STACK — Badge grid
+   ============================================ */
+
+.about__stack {
+    margin-bottom: 56px;
+}
+
+.about__stack-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tech-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 50px;
+    background: var(--background-color-secondary);
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.tech-badge:hover {
+    border-color: var(--contrast-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.tech-badge i {
+    font-size: 1.15rem;
+    color: var(--contrast-color);
+}
+
+.tech-badge span {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-color-primary);
+    letter-spacing: 0.01em;
+}
+
+/* ============================================
+   SERVICE CARDS
+   ============================================ */
+
+.about__cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+.service-card {
+    position: relative;
+    background: var(--background-color-secondary);
+    border-radius: 14px;
+    padding: 28px 24px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid transparent;
+    overflow: hidden;
+}
+
+/* Accent bar at top */
+.service-card__accent {
     position: absolute;
-    width: 84%;
-    height: 1px;
-    background-color: var(--primary-color-active);
-    top: 25px;
-    left: -42%;
-    /* z-index: ; */
-    transition: all ease-in-out 0.3s;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--contrast-color);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
 }
 
-.aboutMe .container .container-timeline .timeline li:first-child::after {
-    content: none;
+.service-card:hover .service-card__accent {
+    transform: scaleX(1);
 }
 
-.aboutMe .container .container-timeline .timeline li.active {
-    color: var(--primary-color);
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 0, 0, 0.04);
 }
 
-.aboutMe .container .container-timeline .timeline li.active::before {
-    background: var(--primary-color);
-    color: var(--white-color);
+.service-card__icon {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
 }
 
+.service-card__icon i {
+    font-size: 1.5rem;
+    color: var(--contrast-color);
+    transition: transform 0.3s ease;
+}
 
-@media only screen and (max-width: 620px) {
+.service-card:hover .service-card__icon i {
+    transform: scale(1.12);
+}
 
-    #aboutMe>div {
-        padding-left: 4rem;
-        padding-right: 4rem;
+.service-card__title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-color-primary);
+    margin: 0 0 10px;
+}
+
+.service-card__text {
+    font-size: 0.84rem;
+    line-height: 1.65;
+    color: var(--text-color-primary);
+    opacity: 0.78;
+    margin: 0;
+    flex-grow: 1;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+/* --- Tablet (768px) --- */
+@media only screen and (max-width: 768px) {
+    .about {
+        padding: 60px 0;
+    }
+
+    .about__container {
+        padding: 0 20px;
+    }
+
+    .section-title {
+        margin-bottom: 40px;
+    }
+
+    .about__intro {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .about__bio-text {
+        max-width: 100%;
+    }
+
+    .about__stats {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+    }
+
+    .about__stat {
+        padding: 18px 12px;
+    }
+
+    .about__cards {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+    }
+}
+
+/* --- Mobile (480px) --- */
+@media only screen and (max-width: 480px) {
+    .about {
+        padding: 48px 0;
+    }
+
+    .about__container {
+        padding: 0 16px;
+    }
+
+    .section-title {
+        font-size: 1.4rem;
+        margin-bottom: 32px;
+    }
+
+    .about__intro {
+        gap: 28px;
+        margin-bottom: 40px;
+    }
+
+    .about__stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .about__stat {
+        padding: 18px 14px;
+    }
+
+    .about__stack {
+        margin-bottom: 40px;
+    }
+
+    .about__stack-grid {
+        gap: 8px;
+    }
+
+    .tech-badge {
+        padding: 6px 12px;
+    }
+
+    .tech-badge span {
+        font-size: 0.75rem;
+    }
+
+    .about__cards {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .service-card {
+        padding: 22px 20px;
+    }
+
+    .about__cta-row {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .about__cta-link {
+        justify-content: center;
     }
 }

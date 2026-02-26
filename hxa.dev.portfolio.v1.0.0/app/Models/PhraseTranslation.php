@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use MongoDB\Laravel\Eloquent\Model as Eloquent;
 
 class PhraseTranslation extends Eloquent
 {
     protected $connection = 'mongodb';
-    protected $collection = 'phrase_translations';
+    protected $table = 'phrase_translations';
 
     protected $primaryKey = 'id';
 }

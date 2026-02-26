@@ -1,11 +1,24 @@
 <?php
 
 return [
-    "title" => "Acerca de Mi",
-    "section1.title" => "Comprometido y enfocado a la mejora",
-    "section1.description1" => "Soy un Ingeniero de Software especializado en Desarrollo Backend y Desarrollo Front End con años :experience de experiencia en el Área de TI, tanto en el Sector Privado como en el Sector Gubernamental.",
-    "section1.description2" => "De igual manera he participado en proyectos Freelance para PyMes y emprendedores.",
-    "section1.description3" => "Así como tambien he participado en consultorías del área de TI para instituciones educativas, y gente con ambición de obtener un conocimiento nuevo.",
-    "section2.title" => "¿Que es lo que hago?",
-    "section2.description1" => "Aquí debajo tienes una pequeña reseña sobre que es lo que hago, mis habilidades técnicas, conjunto de tecnologías que manejo y uso. ¿Quieres encontrar más detalles acerca de mi experiencia? Da una revisada a mi ",
+    "title" => "Sobre Mí",
+
+    // Bio
+    "bio.label" => "Quién soy",
+    "bio.headline" => 'Software Architect &amp; <span class="about__accent">Full Stack</span> Engineer',
+    "bio.text" => "Con :experience+ en la industria de TI, me especializo en diseñar arquitecturas escalables y crear soluciones alineadas a las necesidades core del negocio. Mi enfoque combina tecnologías modernas con arquitectura limpia para entregar experiencias de usuario sólidas. He trabajado en banca, fintech, gobierno y startups—siempre priorizando código mantenible y listo para producción",
+    "bio.resume" => "CV",
+    "bio.contact" => "Hablemos",
+
+    // Stats
+    "stats.experience" => "Años de experiencia",
+    "stats.projects" => "Proyectos entregados",
+    "stats.technologies" => "Tecnologías",
+    "stats.clients" => "Clientes",
+
+    // Tech Stack
+    "stack.title" => "Tech Stack",
+
+    // Services
+    "services.title" => "Lo que hago",
 ];

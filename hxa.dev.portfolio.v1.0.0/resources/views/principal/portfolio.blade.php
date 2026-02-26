@@ -1,110 +1,120 @@
-<div class="content lozad">
-    <section id="portfolio" class="portfolio">
+<div class="content">
+    <section id="portfolio" class="portfolio" aria-label="Project portfolio">
 
-        <div class="container">
-            <h1 data-aos="zoom-in-up"> <i class="fas fa-tasks"></i> {{__("portfolio.title")}}</h1>
-            <p data-aos="zoom-in" data-aos-duration="1000"> {{__("portfolio.description")}}</p>
+        {{-- Dark decorative background --}}
+        <div class="portfolio__bg" aria-hidden="true">
+            <div class="portfolio__bg-glow"></div>
+        </div>
 
-            <div id="slider" class="owl-carousel owl-theme owl-loaded">
-                <div class="owl-stage-outer">
-                    <div class="owl-stage">
-                        <!-- Begin Card Project -->
-                        @foreach ($projects as $project)
-                            @if ($project->active)
-                                <div data-aos="zoom-in" data-aos-duration="2000"
-                                    class="col-md-4 col-lg-4 col-sm-4 col-xs-12 container-product owl-item">
-                                    <a href="project/{{ $project->id }}">
-                                        <div class="show-more text-center">
-                                            <span><i class="fas fa-eye"></i></span>
-                                        </div>
-                                        <article class="text-left">
-                                            <h2>{{ $project->name }}</h2>
-                                            <h4>{{ $project->type }}</h4>
-                                        </article>
-                                        <img class="lozad"
-                                            data-src="data:image/png;base64,{{$project->image }}">
-                                    </a>
-                                </div>
-                            @endif
-                        @endforeach
-                        <!-- End Card Project -->
+        <div class="portfolio__container">
 
-                        <!-- Begin Card Project -->
-                        {{-- <div data-aos="zoom-in" data-aos-duration="2000" class="col-md-4 col-lg-4 col-sm-4 col-xs-12 container-product owl-item">
-                        <a href="">
-                            <div class="show-more text-center">
-                                <span><i class="fas fa-eye"></i></span>
-                            </div>
-                            <article class="text-left">
-                                <h2>Shopmex</h2>
-                                <h4>E-commerce</h4>
-                            </article>
-                            <img class="lozad" data-src="{{URL::asset('/img/portafolio/cards/Project_Shopmex.png')}}" alt="">
-                        </a>
-                    </div> --}}
-                        <!-- End Card Project -->
-
-                        <!-- Begin Card Project -->
-                        {{-- <div data-aos="zoom-in" data-aos-duration="2000" class="col-md-4 col-lg-4 col-sm-4 col-xs-12 container-product owl-item">
-                        <a href="">
-
-                            <div class="show-more text-center">
-                                <span><i class="fas fa-eye"></i></span>
-                            </div>
-                            <article class="text-left">
-                                <h2>Sistema de Control Escolar</h2>
-                                <h4>Sistema Web</h4>
-                            </article>
-                            <img class="lozad" data-src="{{URL::asset('/img/portafolio/cards/Project_SGA.png')}}" alt="">
-                        </a>
-                    </div> --}}
-                        <!-- End Card Project -->
-
-                        <!-- Begin Card Project -->
-                        {{-- <div data-aos="zoom-in" data-aos-duration="2000" class="col-md-4 col-lg-4 col-sm-4 col-xs-12 container-product owl-item">
-                        <a href="">
-                            <div class="show-more text-center">
-                                <span><i class="fas fa-eye"></i></span>
-                            </div>
-                            <article class="text-left">
-                                <h2>Reduce, Reusa, Recicla</h2>
-                                <h4>Página Web</h4>
-                            </article>
-                            <img class="lozad" data-src="{{URL::asset('/img/portafolio/cards/Project_Reduce.png')}}" alt="">
-                        </a>
-                    </div> --}}
-                        <!-- End Card Project -->
-
-                        <!-- Begin Card Project -->
-                        {{-- <div data-aos="zoom-in" data-aos-duration="2000" class="col-md-4 col-lg-4 col-sm-4 col-xs-12 container-product owl-item">
-                        <a href="">
-                            <div class="show-more text-center">
-                                <span><i class="fas fa-eye"></i></span>
-                            </div>
-                            <article class="text-left">
-                                <h2>Alasar Crew</h2>
-                                <h4>Sistema Web</h4>
-                            </article>
-                            <img class="lozad" data-src="{{URL::asset('/img/portafolio/cards/Project_Alasar.png')}}" alt="">
-                        </a>
-                    </div> --}}
-                        <!-- End Card Project -->
-
-                    </div>
+            {{-- Section Header --}}
+            <div class="portfolio__header" data-aos="fade-up">
+                <div class="portfolio__label">
+                    <span class="portfolio__code-tag">&lt;</span>{{ __('portfolio.label') }}<span class="portfolio__code-tag">/&gt;</span>
                 </div>
-                <div class="owl-controls">
-                    <div class="owl-nav">
-                        <div class="owl-prev"></div>
-                        <div class="owl-next"></div>
-                    </div>
-                    <div class="owl-dots">
-                        <div class="owl-dot active"><span></span></div>
-                        <div class="owl-dot"><span></span></div>
-                        <div class="owl-dot"><span></span></div>
-                    </div>
-                </div>
-
+                <h2 class="portfolio__title">
+                    {!! __('portfolio.title_html') !!}
+                </h2>
+                <p class="portfolio__description">{{ __('portfolio.description') }}</p>
             </div>
+
+            {{-- Featured project (first active) --}}
+            @php
+                $activeProjects = $projects->filter(fn($p) => $p->active);
+                $featured = $activeProjects->first();
+                $rest = $activeProjects->skip(1);
+            @endphp
+
+            @if($featured)
+                <div class="portfolio__featured" data-aos="fade-up" data-aos-delay="100">
+                    <a href="project/{{ $featured->id }}" class="featured-card" aria-label="View project: {{ $featured->name }}">
+                        <div class="featured-card__image">
+                            <img class="lozad"
+                                 data-src="data:image/png;base64,{{ $featured->image }}"
+                                 alt="{{ $featured->name }}">
+                            <div class="featured-card__overlay">
+                                <span class="featured-card__badge">{{ __('portfolio.featured') }}</span>
+                            </div>
+                        </div>
+                        <div class="featured-card__content">
+                            <div class="featured-card__meta">
+                                <span class="featured-card__type">
+                                    @foreach($featured->icons_type ?? [] as $icon)
+                                        <i class="{{ $icon }}"></i>
+                                    @endforeach
+                                    {{ $featured->type }}
+                                </span>
+                                @if($featured->date)
+                                    <span class="featured-card__date">{{ $featured->date }}</span>
+                                @endif
+                            </div>
+                            <h3 class="featured-card__name">{{ $featured->name }}</h3>
+                            @if($featured->details && $featured->details->description)
+                                <p class="featured-card__desc">{{ Str::limit($featured->details->description, 160) }}</p>
+                            @endif
+                            <div class="featured-card__footer">
+                                @if($featured->details && $featured->details->icons_techs)
+                                    <div class="featured-card__techs">
+                                        @foreach(array_slice($featured->details->icons_techs, 0, 5) as $tech)
+                                            <i class="{{ $tech }}" title="{{ $tech }}"></i>
+                                        @endforeach
+                                    </div>
+                                @endif
+                                <span class="featured-card__action">
+                                    {{ __('portfolio.view') }} <i class="fas fa-arrow-right"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            @endif
+
+            {{-- Grid: remaining projects --}}
+            <div class="portfolio__grid" id="portfolio-grid">
+                @foreach ($rest as $project)
+                    <article class="project-card" data-aos="fade-up" data-aos-delay="{{ 80 + $loop->index * 80 }}">
+                        <a href="project/{{ $project->id }}" class="project-card__link" aria-label="View project: {{ $project->name }}">
+                            <div class="project-card__image">
+                                <img class="lozad"
+                                     data-src="data:image/png;base64,{{ $project->image }}"
+                                     alt="{{ $project->name }}">
+                                <div class="project-card__overlay">
+                                    <span class="project-card__view">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="project-card__body">
+                                <div class="project-card__meta">
+                                    <span class="project-card__type">
+                                        @foreach($project->icons_type ?? [] as $icon)
+                                            <i class="{{ $icon }}"></i>
+                                        @endforeach
+                                        {{ $project->type }}
+                                    </span>
+                                    @if($project->date)
+                                        <span class="project-card__date">{{ $project->date }}</span>
+                                    @endif
+                                </div>
+                                <h3 class="project-card__name">{{ $project->name }}</h3>
+                                @if($project->details && $project->details->icons_techs)
+                                    <div class="project-card__techs">
+                                        @foreach(array_slice($project->details->icons_techs, 0, 4) as $tech)
+                                            <i class="{{ $tech }}"></i>
+                                        @endforeach
+                                    </div>
+                                @endif
+                            </div>
+                        </a>
+                    </article>
+                @endforeach
+            </div>
+
+            {{-- Pagination --}}
+            <nav class="portfolio__pagination" id="portfolio-pagination" aria-label="Portfolio pages">
+                {{-- JS injects page buttons --}}
+            </nav>
 
         </div>
     </section>

@@ -23,10 +23,10 @@ use App\Models\Project;
  * ROUTES ROOT
  */
 Route::get("/", function () {
-    return Redirect::to("principal");
+    return Redirect::to("main");
 });
 
-Route::get('principal', [PrincipalController::class, 'index']);
+Route::get('main', [PrincipalController::class, 'index']);
 
 /**
  * ROUTES LOCALE
@@ -40,6 +40,6 @@ Route::get("locale/{locale}", function ($locale) {
  * ROUTES PORTFOLIO
  */
 Route::get("project", function () {
-    return Redirect::to("principal");
+    return Redirect::to("main");
 });
 Route::get("project/{id}", [ProjectController::class, "index"]);

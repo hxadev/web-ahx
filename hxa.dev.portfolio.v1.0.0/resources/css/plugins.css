@@ -1,25 +1,36 @@
+/* ============================================
+   SOCIAL BAR (Fixed left sidebar)
+   ============================================ */
+
 .social {
     position: fixed;
     left: 0;
-    top: 200px;
-    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 4;
 }
 
 .social ul {
     list-style: none;
-    padding-left: 0px;
+    padding-left: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
 .social ul li a {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #fff;
-    background: #000;
-    padding: 10px 15px;
+    background: #333;
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
     text-decoration: none;
-    -webkit-transition: all 500ms ease;
-    -o-transition: all 500ms ease;
-    transition: all 500ms ease;
-    border-radius: 0 20px 20px 0;
+    transition: all 0.3s ease;
+    border-radius: 0 8px 8px 0;
 }
 
 .social ul li .icon-facebook {
@@ -29,170 +40,177 @@
 .social ul li .icon-linkedin {
     background: #0e76ab;
 }
+
 .social ul li .icon-instagram {
     background: #f77737;
 }
+
+.social ul li .icon-github {
+    background: #333;
+}
+
 .social ul li .icon-mail {
-    background: #666666;
+    background: #666;
 }
 
 .social ul li a:hover {
-    background: var(#ffff);
-    padding: 10px 30px;
-    color: var(--text-color-primary);
-    border-radius: 0 20px 20p 0;
+    width: 52px;
+    color: #fff;
+    filter: brightness(1.2);
+    text-decoration: none;
+    border-radius: 0 8px 8px 0;
 }
+
+/* ============================================
+   CONFIG PANEL (Fixed right sidebar)
+   ============================================ */
 
 .config-panel {
     background: var(--background-color-secondary);
-    height: auto;
-    width: 150px;
-    border-radius: 25px 0 0 25px;
+    width: 160px;
+    border-radius: 16px 0 0 16px;
     position: fixed;
-    right: -150px;
-    top: 15px;
+    right: -160px;
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 6;
-    transition: all 0.5s ease-in-out;
+    transition: right 0.4s ease-in-out;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+    padding: 12px 0;
 }
 
 .config-panel .panel-inner {
     text-align: center;
     position: relative;
-    padding: 10px;
+    padding: 8px 12px;
     color: var(--text-color-primary);
 }
 
 .config-panel .panel-inner h4 {
     font-size: 0.7rem;
-    font-weight: 400;
-    margin-top: 5px;
+    font-weight: 600;
+    margin: 8px 0 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .config-panel .panel-inner .config-button {
     background: var(--background-color-secondary);
     color: var(--text-color-primary);
-    text-align: center;
-    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
-    padding-top: 3px;
-    top: 30px;
-    left: -30px;
-    width: 30px;
-    height: 30px;
-    border-radius: 10px 0 0 10px;
-    transition: all 0.5s;
+    top: 24px;
+    left: -36px;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px 0 0 8px;
+    transition: all 0.3s;
+    cursor: pointer;
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.1);
 }
 
 .config-panel .panel-inner .config-button:hover {
     background: var(--background-color-degree-hover);
-    cursor: pointer;
 }
 
+.config-panel .panel-inner .config-button i {
+    animation: spin-slow 4s linear infinite;
+}
+
+@keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* --- Config Sections --- */
+.config-section {
+    padding: 4px 8px;
+}
+
+.config-section h4 {
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin: 8px 0 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-color-primary);
+}
+
+/* --- Language Selector --- */
 .config-panel .chooseLanguage {
     list-style: none;
-    display: grid;
-    grid-template-columns: auto auto;
-    padding: 2px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 4px 0;
+    margin: 0;
 }
 
-.config-panel .chooseLanguage li {
-    margin-left: 5px;
+.config-panel .chooseLanguage li a {
+    display: block;
+    transition: all 0.3s;
+    border-radius: 4px;
+    border: 2px solid transparent;
 }
 
 .config-panel .chooseLanguage li a:hover {
-    -webkit-opacity: 0.9;
-    -moz-opacity: 0.9;
-    opacity: 0.9;
-    border: 2px solid var(--background-color-secondary);
+    opacity: 0.85;
+    border-color: var(--contrast-color);
+    transform: scale(1.05);
 }
 
+.config-panel .chooseLanguage li a img {
+    display: block;
+}
+
+/* --- Color Theme Selector --- */
 .config-panel .chooseColor {
     list-style: none;
     display: grid;
-    grid-template-columns: auto auto;
-    padding: 2px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    padding: 4px 0;
+    margin: 0;
+    justify-items: center;
 }
 
-.config-panel .chooseColor li {
-    margin-left: 5px;
-}
-
-.config-panel .chooseColor li a {
-    height: 65%;
-}
-
-.chooseColor {
-    margin-bottom: 0px;
-}
 .config-panel .chooseColor li a {
     display: block;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     border: 2px solid transparent;
-    margin-top: 5px;
-}
-.config-panel .chooseColor li a:hover {
-    -webkit-opacity: 0.9;
-    -moz-opacity: 0.9;
-    opacity: 0.9;
-    border: 2px solid var(--background-color-secondary);
-}
-.config-panel .chooseColor li.list-inline-item {
-    margin-right: 5px;
-}
-.config-panel .chooseColor li.active a {
-    border: 2px solid #fff;
-}
-.config-panel .chooseColor li.theme-1 a {
-    background: #54b689;
-}
-.config-panel .chooseColor li.theme-2 a {
-    background-color: #0083ab;
-}
-.config-panel .chooseColor li.theme-3 a {
-    background-color: #5469c9;
-}
-.config-panel .chooseColor li.theme-4 a {
-    background-color: #43b32c;
-}
-.config-panel .chooseColor li.theme-5 a {
-    background-color: #eea73b;
-}
-.config-panel .chooseColor li.theme-6 a {
-    background-color: #6c51a4;
-}
-.config-panel .chooseColor li.theme-7 a {
-    background-color: #5d6ba7;
-}
-.config-panel .chooseColor li.theme-8 a {
-    background-color: #6c51a4;
-}
-.config-panel .chooseColor li.theme-9 a {
-    background-color: #d67553;
-}
-.config-panel .chooseColor li.theme-10 a {
-    background-color: #5fcb71;
-}
-
-.responsive-button {
-    position: relative;
-    width: auto;
-    top: 14px;
-    font-size: 24px;
-    text-align: end;
-    right: 11px;
+    border-radius: 50%;
+    transition: all 0.3s;
     cursor: pointer;
-    color: var(--text-color-white);
-    display: none;
 }
 
-/* Button Switch Dark Mode or White Mode */
+.config-panel .chooseColor li a:hover {
+    transform: scale(1.15);
+    border-color: var(--text-color-primary);
+}
+
+.config-panel .chooseColor li.active a {
+    border-color: #fff;
+    box-shadow: 0 0 0 2px var(--contrast-color);
+}
+
+.config-panel .chooseColor li.theme-1 a { background: #54b689; }
+.config-panel .chooseColor li.theme-2 a { background: #0083ab; }
+.config-panel .chooseColor li.theme-3 a { background: #5469c9; }
+.config-panel .chooseColor li.theme-4 a { background: #43b32c; }
+.config-panel .chooseColor li.theme-5 a { background: #eea73b; }
+.config-panel .chooseColor li.theme-6 a { background: #6c51a4; }
+
+/* --- Dark Mode Switch --- */
 .switch-button {
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    width: 52px;
+    height: 28px;
 }
+
 .switch-button input {
     opacity: 0;
     width: 0;
@@ -207,20 +225,18 @@
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
+    transition: 0.3s;
 }
 
 .switch-button .slider::before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
+    height: 22px;
+    width: 22px;
+    left: 3px;
+    bottom: 3px;
     background-color: var(--background-color-primary);
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
+    transition: 0.3s;
 }
 
 .switch-button input:checked + .slider {
@@ -232,21 +248,66 @@
 }
 
 .switch-button input:checked + .slider::before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-}
-.switch-button .slider.round {
-    border-radius: 34px;
+    transform: translateX(24px);
 }
 
-.switch-button .slider.round:before {
+.switch-button .slider.round {
+    border-radius: 28px;
+}
+
+.switch-button .slider.round::before {
     border-radius: 50%;
 }
 
-@media only screen and (max-width: 620px) {
-    .responsive-button {
-        display: block;
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+/* --- Tablet (768px) --- */
+@media only screen and (max-width: 768px) {
+    .social {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transform: none;
+        width: 100%;
+    }
+
+    .social ul {
+        flex-direction: row;
+        justify-content: center;
+        gap: 0;
+    }
+
+    .social ul li a {
+        border-radius: 8px 8px 0 0;
+        width: 52px;
+        height: 44px;
+    }
+
+    .social ul li a:hover {
+        width: 52px;
+        height: 48px;
+    }
+
+    .config-panel {
+        top: auto;
+        bottom: 60px;
+        transform: none;
     }
 }
 
+/* --- Mobile (480px) --- */
+@media only screen and (max-width: 480px) {
+    .social ul li a {
+        width: 44px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .config-panel {
+        width: 150px;
+        right: -150px;
+    }
+}

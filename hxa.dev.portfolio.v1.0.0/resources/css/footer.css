@@ -1,40 +1,251 @@
+/* ============================================
+   FOOTER
+   4-column grid: brand / nav / contact / social
+   ============================================ */
+
 .footer {
     position: relative;
-    padding: 40px;
-    margin: 0;
-    overflow: hidden;
     width: 100%;
-    height: auto;
-
+    padding: 0;
+    margin: 0;
     background: var(--footer-color);
+    color: rgba(255, 255, 255, 0.7);
+    overflow: hidden;
 }
 
-.footer .container {
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: auto 100%;
-    padding-left: 10px;
-    padding-right: 10px;
+/* --- Inner wrapper --- */
+.footer__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 52px 24px 28px;
+}
+
+/* ============================================
+   TOP ROW — 4 columns
+   ============================================ */
+
+.footer__top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.3fr auto;
+    gap: 40px;
+    align-items: start;
+}
+
+/* --- Column headings --- */
+.footer__heading {
     color: var(--text-color-white);
-    font-size: 10px;
-    /* padding-top: 50px; */
-    /* padding-bottom: 50px; */
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 16px;
 }
 
-.footer .container a {
+/* ============================================
+   BRAND COLUMN
+   ============================================ */
+
+.footer__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.footer__logo:hover {
+    text-decoration: none;
+}
+
+.footer__logo-symbol {
+    color: var(--contrast-color);
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.footer__logo-text {
+    color: var(--text-color-white);
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.footer__logo-accent {
     color: var(--contrast-color);
 }
 
-.footer .container #logo {
-    width: 140px;
+.footer__tagline {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    margin: 0;
+    max-width: 240px;
 }
 
-.footer .container .col-footer::nth-child(0) {
-    border-right: 1px solid var(--contrast-color);
+/* ============================================
+   NAV COLUMN
+   ============================================ */
+
+.footer__nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-.footer .container .menu h4 {
-    font-size: 15px;
-    font-weight: 800;
+.footer__nav-link {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
 }
 
+.footer__nav-link:hover {
+    color: var(--contrast-color);
+    text-decoration: none;
+}
+
+/* ============================================
+   CONTACT COLUMN
+   ============================================ */
+
+.footer__contact-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer__contact-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+}
+
+.footer__contact-list i {
+    width: 16px;
+    text-align: center;
+    color: var(--contrast-color);
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+.footer__contact-list a,
+.footer__contact-list span {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer__contact-list a:hover {
+    color: var(--contrast-color);
+    text-decoration: none;
+}
+
+/* ============================================
+   SOCIAL COLUMN
+   ============================================ */
+
+.footer__social-links {
+    display: flex;
+    gap: 8px;
+}
+
+.footer__social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.footer__social-link:hover {
+    background: var(--contrast-color);
+    color: var(--text-color-white);
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+/* ============================================
+   DIVIDER
+   ============================================ */
+
+.footer__divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin: 36px 0 20px;
+}
+
+/* ============================================
+   BOTTOM ROW
+   ============================================ */
+
+.footer__bottom {
+    text-align: center;
+}
+
+.footer__copy {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+/* --- Tablet (768px) --- */
+@media only screen and (max-width: 768px) {
+    .footer__inner {
+        padding: 40px 20px 24px;
+    }
+
+    .footer__top {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+    }
+
+    .footer__brand {
+        grid-column: 1 / -1;
+    }
+
+    .footer__divider {
+        margin: 28px 0 16px;
+    }
+}
+
+/* --- Mobile (480px) --- */
+@media only screen and (max-width: 480px) {
+    .footer__inner {
+        padding: 36px 16px 20px;
+    }
+
+    .footer__top {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .footer__brand {
+        grid-column: auto;
+    }
+
+    .footer__tagline {
+        max-width: 100%;
+    }
+
+    .footer__divider {
+        margin: 24px 0 14px;
+    }
+}

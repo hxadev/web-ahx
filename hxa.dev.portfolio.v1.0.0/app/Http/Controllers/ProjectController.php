@@ -21,7 +21,7 @@ class ProjectController extends Controller
 
     public function index($id)
     {
-        $project = $this->project->where('_id', $id)->get()[0];
+        $project = Project::with('details')->where('_id', $id)->firstOrFail();
 
         return view(
             'index',
@@ -38,6 +38,6 @@ class ProjectController extends Controller
 
     public function getAll()
     {
-        return Project::all();
+        return Project::with('details')->get();
     }
 }
